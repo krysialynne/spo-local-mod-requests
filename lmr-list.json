@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/row-formatting.schema.json",
+  "schema": "https://developer.microsoft.com/json-schemas/sp/view-formatting.schema.json",
+  "hideSelection": true,
+  "hideColumnHeader": true,
+  "rowFormatter": {
+    "elmType": "div",
+    "attributes": {
+      "class": "sp-row-card"
+    },
+    "style": {
+      "position": "relative",
+      "width": "100%",
+      "margin": "5px 0",
+      "background-color": "=if([$Status] == 'Under Review', '#B3E5FC',if([$Status] == 'On Hold', '#FFE0B2',if([$Status] == 'In Progress','#FFF9C4',if([$Status] == 'Implemented', '#DCEDC8',if([$Status] == 'Declined', '#E0E0E0', '#BDBDBD'"
+    },
+    "children": [
+      {
+        "elmType": "button",
+        "customRowAction": {
+          "action": "defaultClick"
+        },
+        "style": {
+          "width": "100%",
+          "display": "flex",
+          "flex-direction": "row",
+          "padding": 0,
+          "border": "none",
+          "cursor": "pointer",
+          "background-color": "=if([$Status] == 'Under Review', '#B3E5FC',if([$Status] == 'On Hold', '#FFE0B2',if([$Status] == 'In Progress','#FFF9C4',if([$Status] == 'Implemented', '#DCEDC8',if([$Status] == 'Declined', '#E0E0E0', '#BDBDBD'"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "row-info"
+            },
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "width": "15%",
+              "text-align": "left",
+              "padding": "5px"
+            },
+            "children": [
+              {
+                "elmType": "span",
+                "class": "item-id",
+                "style": {
+                  "font-weight": "bold"
+                },
+                "txtContent": "='LMR #' + [$ID]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-created",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Submitted: ' + toLocaleDateString([$Created])"
+              },
+              {
+                "elmType": "span",
+                "class": "item-created",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Updated: ' + toLocaleDateString([$Modified])"
+              },
+              {
+                "elmType": "span",
+                "class": "item-cat",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Type: ' + [$Category]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-id",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Status: ' + [$Status]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-id",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Requestor: ' + [$Requestor.title]"
+              }
+            ]
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "row-summary"
+            },
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "width": "85%",
+              "text-align": "left",
+              "padding": "5px"
+            },
+            "children": [
+              {
+                "elmType": "span",
+                "class": "item-title",
+                "style": {
+                  "font-weight": "bold"
+                },
+                "txtContent": "[$Title]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-details",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Request details: '+ [$Request_x0020_Details]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-result",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Desired result: '+ [$Desired_x0020_Result]"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
