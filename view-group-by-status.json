@@ -1,0 +1,221 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/row-formatting.schema.json",
+  "schema": "https://developer.microsoft.com/json-schemas/sp/view-formatting.schema.json",
+  "groupProps": {
+    "hideFooter": true,
+    "headerFormatter": {
+      "elmType": "div",
+      "style": {
+        "flex-wrap": "wrap",
+        "display": "flex",
+        "box-sizing": "border-box",
+        "padding": "4px 16px 5px 16px",
+        "border-radius": "6px",
+        "align-items": "center",
+        "white-space": "nowrap",
+        "overflow": "hidden",
+        "margin": "8px 4px 8px 8px",
+        "font-size": "18px"
+      },
+      "attributes": {
+        "class": "=if(@group.fieldData == 'Implemented', 'sp-css-backgroundColor-successBackground50',if(@group.fieldData == 'In Progress', 'sp-css-backgroundColor-warningBackground50',if(@group.fieldData == 'On Hold', 'sp-field-severity--severeWarning50',if(@group.fieldData == 'Under Review', 'sp-css-backgroundColor-blueBackground37',if(@group.fieldData == 'Declined', 'sp-field-severity--blocked50', 'sp-field-borderAllRegular sp-field-borderAllSolid sp-css-borderColor-neutralSecondary')))))"
+      },
+      "children": [
+        {
+          "elmType": "span",
+          "attributes": {
+            "iconName": "=if(@group.fieldData == 'Implemented', 'BoxCheckmarkSolid',if(@group.fieldData == 'In Progress', 'AwayStatus',if(@group.fieldData == 'On Hold', 'CirclePauseSolid',if(@group.fieldData == 'Under Review', 'FeedbackRequestSolid',if(@group.fieldData == 'Declined', 'Blocked','')))))",
+            "class": "=if(@group.fieldData == 'Implemented', 'ms-fontColor-success',if(@group.fieldData == 'In Progress', 'ms-fontColor-yellow',if(@group.fieldData == 'On Hold', 'ms-fontColor-sharedRedOrange10',if(@group.fieldData == 'Under Review', 'ms-fontColor-sharedBlue10',if(@group.fieldData == 'Declined', 'ms-fontColor-red', 'ms-fontColor-neutralPrimary')))))"
+          },
+          "style": {
+            "max-width": "48px",
+            "max-height": "48px",
+            "margin-top": "4px",
+            "border-radius": "4px"
+          }
+        },
+        {
+          "elmType": "div",
+          "children": [
+            {
+              "elmType": "div",
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "justify-content": "center"
+              },
+              "children": [
+                {
+                  "elmType": "div",
+                  "txtContent": "=  @group.count",
+                  "style": {
+                    "padding": "5px 5px 5px 5px",
+                    "font-weight": "500"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elmType": "div",
+          "children": [
+            {
+              "elmType": "div",
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "justify-content": "center"
+              },
+              "children": [
+                {
+                  "elmType": "div",
+                  "txtContent": "='LMRs ' + @group.fieldData.displayValue",
+                  "style": {
+                    "padding": " ",
+                    "font-weight": "500"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "hideSelection": true,
+  "hideColumnHeader": true,
+  "rowFormatter": {
+    "elmType": "div",
+    "attributes": {
+      "class": "sp-row-card"
+    },
+    "style": {
+      "position": "relative",
+      "width": "100%",
+      "margin": "5px 0",
+      "background-color": "=if([$Status] == 'Under Review', '#B3E5FC',if([$Status] == 'On Hold', '#FFE0B2',if([$Status] == 'In Progress','#FFF9C4',if([$Status] == 'Implemented', '#DCEDC8',if([$Status] == 'Declined', '#E0E0E0', '#BDBDBD'"
+    },
+    "children": [
+      {
+        "elmType": "button",
+        "customRowAction": {
+          "action": "defaultClick"
+        },
+        "style": {
+          "width": "100%",
+          "display": "flex",
+          "flex-direction": "row",
+          "padding": 0,
+          "border": "none",
+          "cursor": "pointer",
+          "background-color": "=if([$Status] == 'Under Review', '#B3E5FC',if([$Status] == 'On Hold', '#FFE0B2',if([$Status] == 'In Progress','#FFF9C4',if([$Status] == 'Implemented', '#DCEDC8',if([$Status] == 'Declined', '#E0E0E0', '#BDBDBD'"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "row-info"
+            },
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "width": "15%",
+              "text-align": "left",
+              "padding": "5px"
+            },
+            "children": [
+              {
+                "elmType": "span",
+                "class": "item-id",
+                "style": {
+                  "font-weight": "bold"
+                },
+                "txtContent": "='LMR #' + [$ID]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-created",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Submitted: ' + toLocaleDateString([$Created])"
+              },
+              {
+                "elmType": "span",
+                "class": "item-created",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Updated: ' + toLocaleDateString([$Modified])"
+              },
+              {
+                "elmType": "span",
+                "class": "item-cat",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Type: ' + [$Category]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-id",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Status: ' + [$Status]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-id",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Requestor: ' + [$Requestor.title]"
+              }
+            ]
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "row-summary"
+            },
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "width": "85%",
+              "text-align": "left",
+              "padding": "5px"
+            },
+            "children": [
+              {
+                "elmType": "span",
+                "class": "item-title",
+                "style": {
+                  "font-weight": "bold"
+                },
+                "txtContent": "[$Title]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-details",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Request details: '+ [$Request_x0020_Details]"
+              },
+              {
+                "elmType": "span",
+                "class": "item-result",
+                "style": {
+                  "font-weight": "normal"
+                },
+                "txtContent": "='Desired result: '+ [$Desired_x0020_Result]"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
